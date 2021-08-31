@@ -1,3 +1,6 @@
 
-public class Animal implements Movement{
+public class Animal implements Movement {
+    public Boolean isAlive(){
+        return true;
+    }
 }
