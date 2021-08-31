@@ -9,6 +9,18 @@ public class Main {
     Systemas.out.println(5);
     Systemas.out.println(5.00);
     Systemas.out.println(5.0);
+    Systemas.out.println(new Word("w"));
+
+    Word[] words = new Word[]{
+            new Word("1"),
+            new Word("2"),
+            new Word("3"),
+            new Word("4"),
+            new Word("5"),
+    };
+        System.out.println(words.toString());
+
+        Systemas.out.println(words);
 
 
 
