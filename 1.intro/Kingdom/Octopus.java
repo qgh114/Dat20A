@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Octopus extends Animal{
     int act;
     @Override
@@ -5,30 +7,49 @@ public class Octopus extends Animal{
         return "Swish Swoosh";
     }
 
-    public void activity(int act){
+    private static final Random random = new Random();
+    private static final int min = 1;
+    private static final int max = 10;
 
-        switch (act){
-            case 1:
-                System.out.println("Dancing");
+    public void makeDoActivity(){
+       while(true){
+           try {
+               System.out.println(activity());
+               Thread.sleep(1000);
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }
+           System.out.println(activity());
+       }
+    }
+
+
+    private String activity(){
+        String activity = null;
+
+        int activityNumber = random.nextInt(max) + min;
+        switch (activityNumber){
+            case 1: activity = "Dancing";
+                //System.out.println("Dancing");
                 break;
-            case 2:
-                System.out.println("Fighting");
+            case 2: activity = "Fighting";
+                //System.out.println("Fighting");
                 break;
-            case 3:
-                System.out.println("Sleeping");
+            case 3: activity = "Sleeping";
+                // System.out.println("Sleeping");
                 break;
-            case 4:
-                System.out.println("Laughing");
+            case 4: activity = "Laughing";
+                //System.out.println("Laughing");
                 break;
-            case 5:
-                System.out.println("Swooshing");
+            case 5: activity = "Swooshing";
+                //System.out.println("Swooshing");
                 break;
-            case 6:
-                System.out.println("Relaxing");
+            case 6: activity = "Relaxing";
+                // System.out.println("Relaxing");
                 break;
-            default:
-                System.out.println("no activity");
-        }
+            default: activity = "no activity";
+                //System.out.println("no activity");
+        } return activity;
 
         }
 
