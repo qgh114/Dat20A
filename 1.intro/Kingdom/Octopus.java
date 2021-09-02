@@ -11,10 +11,16 @@ public class Octopus extends Animal{
     private static final int min = 1;
     private static final int max = 10;
 
+
     public void makeDoActivity(){
        while(true){
            try {
+               String activity = activity();
                System.out.println(activity());
+               if(activity.equals("Mate")){
+                   GameOfOctopus gameThread = new GameOfOctopus();
+                   gameThread.start();
+               }
                Thread.sleep(1000);
            } catch (InterruptedException e) {
                e.printStackTrace();
@@ -44,7 +50,7 @@ public class Octopus extends Animal{
             case 5: activity = "Swooshing";
                 //System.out.println("Swooshing");
                 break;
-            case 6: activity = "Relaxing";
+            case 6: activity = "Mate";
                 // System.out.println("Relaxing");
                 break;
             default: activity = "no activity";
