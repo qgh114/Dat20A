@@ -1,0 +1,20 @@
+{
+  "key": "value",
+  "manufacturer": "Airbus",
+  "isBetterThanBoeing": true,
+  "productLineSalection": 60.00,
+  "pilots": [{"name":  "Bob"},
+             {"name":  "Mario"}],
+  "CEO": {
+    "name": "QWERTY"
+  },
+
+
+  "isThisValidjson": true,
+  "age": 100,
+  "Student":[
+    {"name": "Me", "Age": 200}]
+
+
+
+}

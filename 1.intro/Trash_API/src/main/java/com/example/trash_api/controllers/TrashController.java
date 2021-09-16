@@ -1,13 +1,10 @@
 package com.example.trash_api.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.Clock;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
+import java.util.List;
 
 @RestController
 public class TrashController {
@@ -25,9 +22,7 @@ public class TrashController {
         return new Date();
     }
 
-
-    @GetMapping("/deadly-sins")
-    public String sins(){
+    public List<String> Arrsins(){
         ArrayList<String> sins = new ArrayList<String>();
         sins.add("Lust");
         sins.add("Greed");
@@ -36,14 +31,47 @@ public class TrashController {
         sins.add("Envy");
         sins.add("Pride");
         sins.add("Gluttony");
+        return sins;
+    }
 
-        Random random = new Random();
 
-        String sin = sins.get(random.nextInt(7));
+    @GetMapping("/deadly-sins/{id}")
+    public String sins(@PathVariable int id){
+        try {
+            return Arrsins().get(id);
+        } catch (Exception error){
+            return "Not sinned";
+        }
 
-return sin;
+        /*if(id>7 || id<=0){
+            return "out of scope";
+        }
+
+         */
+
+
+       // Random random = new Random();
+
+       // String sin = sins.get(random.nextInt(7));
+
+       // return Arrsins().get(id);
 
 }
+
+@GetMapping("/trash")
+    public String trash(@RequestParam String trash){
+
+        return trash;
+
+}
+
+@PostMapping("/rubbishbin")
+    public String throwOutRubbish(@RequestBody String everything){
+    System.out.println(everything);
+        return "Everything went well";
+}
+
+
 
 
 
