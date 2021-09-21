@@ -1,0 +1,15 @@
+REST API
+
+HTTP Method:        Endpoint:           Description:
+
+GET                 /dinosaurs          Get ALL dinosaurs
+
+GET                 /dinosaurs/{id}     Get dinosaur by id
+
+POST                /dinosaurs          Create a dinosaur
+
+PUT                 /dinosaur/{id}      Update a dinosaur by id
+
+PATCH               /dinosaur/{id}      Update some values on dinosaur by id
+
+DELETE              /dinosaurs/{id}     Delete dinosaur by id
