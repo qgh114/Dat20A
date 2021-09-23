@@ -8,7 +8,7 @@ public class PaintingsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(PaintingsApplication.class, args);
-        System.out.println("hello");
+        System.out.println("hellog");
     }
 
 }
