@@ -31,15 +31,17 @@ public class Systemas {
             System.out.println(w);
         }
 
-        public static void println(Object[] content){
-            for (Object object:content
-                 ) {
+        public static void println(Object[] content) {
+            for (Object object : content
+            ) {
                 System.out.println(object);
 
             }
         }
 
-        public ArrayList<String> liste = new ArrayList<String>();{
+        public ArrayList<String> liste = new ArrayList<String>();
+
+        {
             liste.add("1");
             liste.add("2");
             liste.add("3");
@@ -47,18 +49,17 @@ public class Systemas {
             liste.add("5");
         }
 
-        public static void println(List<Object> obj){
-            for (Object o:obj
-                 ) {
-                System.out.println(o);;
+        public static void println(List<Object> obj) {
+            for (Object o : obj
+            ) {
+                System.out.println(o);
+                ;
 
             }
 
         }
 
 
-
-
-        }
     }
+}
 

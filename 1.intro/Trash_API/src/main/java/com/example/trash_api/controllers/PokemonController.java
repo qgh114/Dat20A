@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 public class PokemonController {
 
-    public ArrayList listofp(){
+    public ArrayList listofp() {
         ArrayList<String> plist = new ArrayList<String>();
         plist.add("Pikachu");
         plist.add("Alakazam");
@@ -18,15 +18,16 @@ public class PokemonController {
     }
 
     @GetMapping("/pokemon/go")
-    public boolean pokemon(){
+    public boolean pokemon() {
 
-      return true;
-    };
+        return true;
+    }
 
+    ;
 
 
     @GetMapping("/pokemon")
-    public List plist(){
+    public List plist() {
 
         return listofp();
     }

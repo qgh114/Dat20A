@@ -2,7 +2,9 @@ package com.example.trash_api.Model;
 
 public class SuperMarioCharacter {
 
-    public String character(){
+    public String character() {
         return "Waluigi";
-    };
+    }
+
+    ;
 }

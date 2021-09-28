@@ -14,7 +14,7 @@ public class SuperMarioController {
     Random random = new Random();
 
     @GetMapping("/supermario/characters")
-    public String supermario(){
+    public String supermario() {
 
         ArrayList<String> characters = new ArrayList<String>();
         characters.add("Mario");
@@ -33,5 +33,7 @@ public class SuperMarioController {
         String character = characters.get(random.nextInt(4));
 
         return character;
-    };
+    }
+
+    ;
 }

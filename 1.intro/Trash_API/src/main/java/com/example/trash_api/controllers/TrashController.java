@@ -10,19 +10,18 @@ import java.util.List;
 public class TrashController {
 
     @GetMapping("/")
-    public String frontpage(){
+    public String frontpage() {
         return "index";
     }
 
 
-
     @GetMapping("/clock")
-    public Date showClock(){
+    public Date showClock() {
 
         return new Date();
     }
 
-    public List<String> Arrsins(){
+    public List<String> Arrsins() {
         ArrayList<String> sins = new ArrayList<String>();
         sins.add("Lust");
         sins.add("Greed");
@@ -36,10 +35,10 @@ public class TrashController {
 
 
     @GetMapping("/deadly-sins/{id}")
-    public String sins(@PathVariable int id){
+    public String sins(@PathVariable int id) {
         try {
             return Arrsins().get(id);
-        } catch (Exception error){
+        } catch (Exception error) {
             return "Not sinned";
         }
 
@@ -50,29 +49,26 @@ public class TrashController {
          */
 
 
-       // Random random = new Random();
+        // Random random = new Random();
 
-       // String sin = sins.get(random.nextInt(7));
+        // String sin = sins.get(random.nextInt(7));
 
-       // return Arrsins().get(id);
+        // return Arrsins().get(id);
 
-}
+    }
 
-@GetMapping("/trash")
-    public String trash(@RequestParam String trash){
+    @GetMapping("/trash")
+    public String trash(@RequestParam String trash) {
 
         return trash;
 
-}
+    }
 
-@PostMapping("/rubbishbin")
-    public String throwOutRubbish(@RequestBody String everything){
-    System.out.println(everything);
+    @PostMapping("/rubbishbin")
+    public String throwOutRubbish(@RequestBody String everything) {
+        System.out.println(everything);
         return "Everything went well";
-}
-
-
-
+    }
 
 
 }

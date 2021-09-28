@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class HandMavenController {
 
     @GetMapping("/about")
-    public String aboutProject(){
+    public String aboutProject() {
         return "about";
 
-    };
+    }
+
+    ;
 }

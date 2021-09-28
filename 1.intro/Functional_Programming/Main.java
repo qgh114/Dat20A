@@ -3,9 +3,9 @@ import java.util.Comparator;
 public class Main {
     public static void main(String[] args) {
         //anonymous class
-        AbstractClass abstractClassImplemented = new AbstractClass(){
+        AbstractClass abstractClassImplemented = new AbstractClass() {
             @Override
-            public void makeSurrealArt(){
+            public void makeSurrealArt() {
                 System.out.println("Created by ");
 
             }
@@ -18,12 +18,11 @@ public class Main {
             }
 
         };
-        System.out.println(comparator.compare("a","b"));
+        System.out.println(comparator.compare("a", "b"));
 
         //Create this as lambda
         Concatenator concat = (firstString, secondString) -> firstString + secondString;
         System.out.println(concat.cat("Hello", "World"));
-
 
 
     }

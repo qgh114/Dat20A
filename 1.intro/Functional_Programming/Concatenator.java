@@ -1,3 +1,3 @@
 public interface Concatenator {
-     String cat(String firstString, String secondString);
+    String cat(String firstString, String secondString);
 }
