@@ -7,6 +7,7 @@ public class Painting {
         private String title;
         private String genre;
         private int year;
+
         public Painting(String artist, double price, String title, String genre, int year) {
             this.artist = artist;
             this.price = price;
@@ -14,6 +15,16 @@ public class Painting {
             this.genre = genre;
             this.year = year;
         }
+
+        public Painting(){};
+
+
+        public Painting(String artist){
+            this.artist = artist;
+        }
+
+
+
         public String getArtist() {
             return artist;
         }
