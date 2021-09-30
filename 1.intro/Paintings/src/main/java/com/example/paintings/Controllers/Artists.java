@@ -1,9 +1,8 @@
 package com.example.paintings.Controllers;
 
 import com.example.paintings.models.Artist;
-import com.example.paintings.models.Painting;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.paintings.repositories.ArtistRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,41 +10,53 @@ import java.util.ArrayList;
 @RestController
 public class Artists {
 
-    public ArrayList<Artist> artists = new ArrayList<>();
+    @Autowired
+    ArtistRepository artists;
 
-    //Returns every Painting
+
     @GetMapping("/artists")
-    public ArrayList<Artist> getArtist(){
-        return artists;
+    public Iterable<Artist> getArtists(){
+
+        return artists.findAll();
     }
 
-    //Gets painting by id
+
     @GetMapping("/artists/{id}")
-    public Artist getArtistsById(@PathVariable int id){
-        return artists.get(id);
+    public Artist getArtistsById(@PathVariable Long id){
+        return artists.findById(id).get();
     }
 
     //Adds painting
     @PostMapping("/artists")
-    public Artist addArtists(@RequestBody Artist artist){
-        artists.add(artist);
+    public Artist addArtists(@RequestBody Artist newartist){
 
-        return artist;
+        return artists.save(newartist);
     }
 
     //Updates painting by id
     @PutMapping("/artists/{id}")
-    public Artist putArtistsById(@PathVariable int id, @RequestBody Artist artist){
-        return artists.set(id,artist);
+    public void updateArtistsById(@PathVariable Long id, @RequestBody Artist artistToUpdate){
+        artists.findById(id).map(foundArtist ->{
+            foundArtist.setName(artistToUpdate.getName());
+            foundArtist.setAge(artistToUpdate.getAge());
+            foundArtist.setNationality(artistToUpdate.getNationality());
+            foundArtist.setPrimaryStyle(artistToUpdate.getPrimaryStyle());
+            foundArtist.setGender(artistToUpdate.getGender());
+
+            artists.save(foundArtist);
+            return "Artist updated";
+        }).orElse("Artist not found");
+
+
     }
 
     //Deletes painting by id
     @DeleteMapping("/artists/{id}")
-    public Artist deleteArtistsById(@PathVariable int id){
-        return artists.remove(id);
+    public void deleteArtistsById(@PathVariable Long id){
+        artists.deleteById(id);
     }
 /*
-    //uodates some info painting by id
+    //updates some info painting by id
     @PatchMapping("/artists/{id}")
     public Artist patchArtist(@PathVariable int id, @RequestBody String body) {
         ObjectMapper mapper = new ObjectMapper();
