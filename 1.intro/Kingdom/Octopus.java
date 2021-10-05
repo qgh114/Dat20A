@@ -31,6 +31,8 @@ public class Octopus extends Animal {
     }
 
 
+
+
     private String activity() {
         String activity = null;
 
@@ -63,6 +65,34 @@ public class Octopus extends Animal {
             default:
                 activity = "no activity";
                 //System.out.println("no activity");
+        }
+        return activity;
+
+    }
+
+
+    private String species() {
+        String activity = null;
+
+        int activityNumber = random.nextInt(max) + min;
+        switch (activityNumber) {
+            case 1:
+                activity = "I am a Octopus Vulgaris";
+
+                break;
+            case 2:
+                activity = "I am a Bathypolypus Arcticus";
+                //System.out.println("Fighting");
+                break;
+            case 3:
+                activity = "I am a Eledone Cirrhosa";
+                break;
+            case 4:
+                activity = "I am a Haliphron Atlanticus";
+                break;
+
+            default:
+                activity = "I am what ever the waves are taking me \uD83E\uDD19";
         }
         return activity;
 

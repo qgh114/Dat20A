@@ -1,8 +1,12 @@
 package com.example.paintings.Controllers;
 
+import com.example.paintings.models.Artist;
 import com.example.paintings.models.Painting;
+import com.example.paintings.repositories.ArtistRepository;
+import com.example.paintings.repositories.PaintingRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,6 +14,86 @@ import java.util.ArrayList;
 @RestController
 public class Paintings {
 
+
+    @Autowired
+    PaintingRepository paintings;
+
+
+    @GetMapping("/paintings")
+    public Iterable<Painting> getPaintings(){
+
+        return paintings.findAll();
+    }
+
+
+    @GetMapping("/paintings/{id}")
+    public Painting getPaintingById(@PathVariable Long id){
+        return paintings.findById(id).get();
+    }
+
+    //Adds painting
+    @PostMapping("/paintings")
+    public Painting addPaintings(@RequestBody Painting newpainting){
+
+        return paintings.save(newpainting);
+    }
+
+    //Updates painting by id
+    @PatchMapping("/paintings/{id}")
+    public void patchPaintingById(@PathVariable Long id, @RequestBody Painting paintingToUpdate){
+        paintings.findById(id).map(foundPainting ->{
+            if(paintingToUpdate.getArtist()!= null) foundPainting.setArtist(paintingToUpdate.getArtist());
+            if(paintingToUpdate != null)foundPainting.setYear(paintingToUpdate.getYear());
+            if(paintingToUpdate != null)foundPainting.setPrice(paintingToUpdate.getPrice());
+            if(paintingToUpdate.getTitle()!= null)foundPainting.setTitle(paintingToUpdate.getTitle());
+            if(paintingToUpdate.getGenre()!= null)foundPainting.setGenre(paintingToUpdate.getGenre());
+            paintings.save(foundPainting);
+            return "Painting updated";
+        }).orElse("Painting not found");
+
+
+
+    }
+
+    @PutMapping("/paintings/{id}")
+    public String updatePaintingById(@PathVariable Long id, @RequestBody Painting paintingToUpdate){
+        if (paintings.existsById(id)) {
+            paintingToUpdate.setId(id);
+            paintings.save(paintingToUpdate);
+            return "Painting was created";
+        } else {
+            return "Painting not found";
+        }
+    }
+
+    //Deletes painting by id
+    @DeleteMapping("/paintings/{id}")
+    public void deletePaintingById(@PathVariable Long id){
+        paintings.deleteById(id);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
     public ArrayList<Painting> paintings = new ArrayList<>();
 
     //Returns every Painting
@@ -54,7 +138,7 @@ public class Paintings {
             return newPainting;
         } catch (JsonProcessingException error) {
             System.out.println(error);
-            Painting unknownPainting = new Painting("Unknown");
+            Painting unknownPainting = new Painting();
             paintings.set(id, unknownPainting);
             return unknownPainting;
         }
@@ -62,6 +146,8 @@ public class Paintings {
 
 
 
+
+ */
 
 
 }

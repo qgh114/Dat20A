@@ -1,7 +1,50 @@
 package com.example.paintings.models;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Data
+@Table(name="paintings")
+@Entity
 public class Painting {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private long id;
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
+
+    @Column
+    private String artist;
+
+    @Column
+    private int price;
+
+    @Column
+    private String title;
+
+    @Column
+    private String genre;
+
+    @Column
+    private int year;
+
+
+
+
+
+
+
+
+    /*
         private String artist;
         private double price;
         private String title;
@@ -55,5 +98,8 @@ public class Painting {
         public void setYear(int year) {
             this.year = year;
         }
-    }
+
+ */
+
+}
 

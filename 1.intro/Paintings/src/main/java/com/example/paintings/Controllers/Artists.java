@@ -34,20 +34,32 @@ public class Artists {
     }
 
     //Updates painting by id
-    @PutMapping("/artists/{id}")
-    public void updateArtistsById(@PathVariable Long id, @RequestBody Artist artistToUpdate){
+    @PatchMapping("/artists/{id}")
+    public void patchArtistsById(@PathVariable Long id, @RequestBody Artist artistToUpdate){
         artists.findById(id).map(foundArtist ->{
-            foundArtist.setName(artistToUpdate.getName());
-            foundArtist.setAge(artistToUpdate.getAge());
-            foundArtist.setNationality(artistToUpdate.getNationality());
-            foundArtist.setPrimaryStyle(artistToUpdate.getPrimaryStyle());
-            foundArtist.setGender(artistToUpdate.getGender());
+            if(artistToUpdate.getName()!= null) foundArtist.setName(artistToUpdate.getName());
+            if(artistToUpdate != null)foundArtist.setAge(artistToUpdate.getAge());
+            if(artistToUpdate.getNationality()!= null)foundArtist.setNationality(artistToUpdate.getNationality());
+            if(artistToUpdate.getPrimaryStyle()!= null)foundArtist.setPrimaryStyle(artistToUpdate.getPrimaryStyle());
+            if(artistToUpdate.getGender() != null)foundArtist.setGender(artistToUpdate.getGender());
 
             artists.save(foundArtist);
             return "Artist updated";
         }).orElse("Artist not found");
 
 
+
+    }
+
+    @PutMapping("/artist/{id}")
+    public String updateArtistById(@PathVariable Long id, @RequestBody Artist artistToUpdate){
+        if (artists.existsById(id)) {
+            artistToUpdate.setId(id);
+            artists.save(artistToUpdate);
+            return "Artist was created";
+        } else {
+            return "Artist not found";
+        }
     }
 
     //Deletes painting by id
