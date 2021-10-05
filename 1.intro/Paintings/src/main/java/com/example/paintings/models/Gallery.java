@@ -3,6 +3,7 @@ package com.example.paintings.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Table(name="galleries")
@@ -33,5 +34,10 @@ public class Gallery {
 
     @Column
     private int squareFeet;
+
+    //FetchType.LAZY henter kun data når den har brug for det. CASCADETYPE måden tabellerne fungerer sammen altså fx når der bliver slette osv
+    @OneToMany(mappedBy = "gallery", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Artist> artists;
+
 
 }
