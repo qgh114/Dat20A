@@ -1,5 +1,6 @@
 package com.example.paintings.models;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Painting {
     }
 
     @Column
+    @ApiModelProperty(notes = "Name of the artist")
     private String artist;
 
     @Column

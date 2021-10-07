@@ -6,11 +6,14 @@ import com.example.paintings.repositories.ArtistRepository;
 import com.example.paintings.repositories.PaintingRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
+@Api(value = "Paintings controller", description = "REST endpoints for paintings")
 @RestController
 public class Paintings {
 
@@ -37,6 +40,19 @@ public class Paintings {
 
         return paintings.save(newpainting);
     }
+
+    @GetMapping("paintings/timeline")
+    public List<Painting> getPaintingByArtistAndYear(@RequestParam String artist, @RequestParam int year){
+        return paintings.findPaintingByArtistAndYear(artist,year);
+    }
+
+    @GetMapping("/paintings/pricelookup/{price}")
+    public List<Painting> getPaintingAboveACertainPrice(@PathVariable double price){
+        
+        return paintings.getPaintingAboveACertainPrice(price);    
+    }
+
+
 
     //Updates painting by id
     @PatchMapping("/paintings/{id}")

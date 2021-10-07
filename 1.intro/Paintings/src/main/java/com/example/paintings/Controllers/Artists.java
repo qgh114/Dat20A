@@ -33,6 +33,16 @@ public class Artists {
         return artists.save(newartist);
     }
 
+
+
+    @PostMapping("/artist/{artistId}/{galleryId}")
+    public Artist addGalleryToArtist(@PathVariable Long galleryId, @PathVariable Long artistId){
+
+       // Artist foundArtist= artists.findById(artistId).get();
+
+        return null;
+    }
+
     //Updates painting by id
     @PatchMapping("/artists/{id}")
     public void patchArtistsById(@PathVariable Long id, @RequestBody Artist artistToUpdate){
