@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Api(value = "Paintings controller", description = "REST endpoints for paintings")
+@Api(value = "Paintings controller", description = "REST endpoints for paintings" )
 @RestController
 public class Paintings {
 
