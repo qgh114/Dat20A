@@ -1,8 +1,11 @@
 package com.example.paintings.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Table(name="artists")
@@ -39,7 +42,12 @@ public class Artist {
 
     @ManyToOne
     @JoinColumn(name = "gallery_id")
+    @Nullable
     private Gallery gallery;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "artists", fetch = FetchType.LAZY)
+    private List<Painting> paintings;
 
 
 }

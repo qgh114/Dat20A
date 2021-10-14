@@ -21,6 +21,8 @@ public class Artists {
     }
 
 
+
+
     @GetMapping("/artists/{id}")
     public Artist getArtistsById(@PathVariable Long id){
         return artists.findById(id).get();

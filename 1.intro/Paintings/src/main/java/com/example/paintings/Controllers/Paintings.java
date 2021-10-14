@@ -1,10 +1,12 @@
 package com.example.paintings.Controllers;
 
+import com.example.paintings.DTO.ArtistDTO;
 import com.example.paintings.models.Artist;
 import com.example.paintings.models.Painting;
 import com.example.paintings.repositories.ArtistRepository;
 import com.example.paintings.repositories.PaintingRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class Paintings {
     @Autowired
     PaintingRepository paintings;
 
+    @Autowired
+    ArtistRepository artists;
+
 
     @GetMapping("/paintings")
     public Iterable<Painting> getPaintings(){
@@ -36,9 +41,30 @@ public class Paintings {
 
     //Adds painting
     @PostMapping("/paintings")
-    public Painting addPaintings(@RequestBody Painting newpainting){
+    public Painting addPaintings(@RequestBody String body) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+        Painting paintingToCreate = mapper.readValue(body, Painting.class);
+
+        Iterable<Long> artistsIds = mapper.readValue(body, ArtistDTO.class).artistsIds;
+
+        //List<Artist> foundArtists = artists.findAllById(artistsIds);
+
+        //paintingToCreate.setArtist(foundArtists);
+
+
+
+        return paintings.save(paintingToCreate);
+
+
+/*
+        // don't allow the client to overwrite the id
+        newpainting.setId(null);
 
         return paintings.save(newpainting);
+
+ */
     }
 
     @GetMapping("paintings/timeline")

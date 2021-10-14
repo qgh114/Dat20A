@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Table(name="paintings")
@@ -38,6 +39,19 @@ public class Painting {
 
     @Column
     private int year;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinTable(name = "paintings_artists",
+            joinColumns = {
+                    @JoinColumn(name = "paintings_id", referencedColumnName = "id",
+                            nullable = true, updatable = true)
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "artists_id", referencedColumnName = "id",
+                            nullable = true, updatable = true)
+            }
+    )
+    private List<Artist> artists;
 
 
 
