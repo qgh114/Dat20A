@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pokemon</title>
+</head>
+<body>
+
+<p id="pokemon-name"></p>
+<div id="character-names-wrapper"></div>
+<script>
+    fetch("https://pokeapi.co/api/v2/pokemon")
+        .then(response => response.json())
+        .then(result => {
+            result.results.map(function (character){
+              const characterDivElement = document.getElementById("character-names-wrapper");
+                const nameParagraphElement = document.createElement("p");
+                nameParagraphElement.innerText = character.name;
+                characterDivElement.appendChild(nameParagraphElement);
+
+
+
+                console.log(nameParagraphElement);
+
+            })
+            console.log(result);
+
+        });
+
+</script>
+</body>
+</html>
