@@ -27,6 +27,8 @@ public class ArtistRepositoryIntegrationTest {
 
         //Artist artistfound = artists.findByName("Salvador Dali");
 
+        //assertEquals(artistFound.getName(), artist.getName());
+
 
 
     }

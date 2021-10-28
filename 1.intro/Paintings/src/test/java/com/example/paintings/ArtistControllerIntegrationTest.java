@@ -4,7 +4,6 @@ import com.example.paintings.Controllers.Artists;
 import com.example.paintings.models.Artist;
 import com.example.paintings.repositories.ArtistRepository;
 import com.example.paintings.repositories.GalleryRepository;
-import com.jayway.jsonpath.JsonPath;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.internal.verification.VerificationModeFactory;
@@ -18,10 +17,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
 import java.util.List;
-import static org.hamcrest.CoreMatchers.is;
 
 import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
-import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
