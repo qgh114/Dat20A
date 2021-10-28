@@ -8,10 +8,50 @@
 <h1>Welcome to galleries</h1>
 
 <script>
+    function escapeHTML(string) {
+        string = string.replace(/&/g, "&amp;");
+        string = string.replace(/>/g, "&gt;");
+        string = string.replace(/</g, "&lt;");
+        string = string.replace(/"/g, "&quot;");
+        string = string.replace(/'/g, "&#039;");
+        return string;
+    }
+
+
   fetch("http://localhost:8080/artists")
   .then(response => response.json())
-  .then(artists => console.log(artists));
+  .then(artists => {
+      const artistElement = document.getElementById("latest-artist");
+      console.log(artists)
+      artists.map(artist => {
+          //const artistParagraph = document.createElement("p")
+         // artistParagraph.innerText=artist.name;
+          const artistDiv = document.createElement("div")
+
+          artistDiv.innerHTML=`
+          <p>${escapeHTML(artist.name)}</p>
+          <p>${escapeHTML(artist.age.toString())}</p>
+          <p>${escapeHTML(artist.gender)}</p>
+          `;
+          artistElement.appendChild(artistDiv)
+
+
+
+
+          artistElement.append(artistParagraph)
+      });
+      //document.getElementById("latest-artist").innerText=artist.name;
+      console.log(artist)
+
+  });
+
+
+
+
 </script>
+
+<h2>Latest artists:</h2>
+<h3 id="latest-artist"></h3>
 
 </body>
 </html>
