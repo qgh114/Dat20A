@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Galleries</title>
+</head>
+<body>
+<h1>Welcome to galleries</h1>
+
+<script>
+  fetch("http://localhost:8080/artists")
+  .then(response => response.json())
+  .then(artists => console.log(artists));
+</script>
+
+</body>
+</html>
