@@ -40,6 +40,9 @@ public class Painting {
     @Column
     private int year;
 
+    @Column
+    private String image;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "paintings_artists",
             joinColumns = {

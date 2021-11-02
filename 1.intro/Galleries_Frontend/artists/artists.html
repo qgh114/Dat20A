@@ -2,11 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Artists</title>
+    <link rel="stylesheet" href="../global.css">
+    <script src="../lib/HTMLEscape.js"></script>
 </head>
 <body>
 
+<div id="create-artist-wrapper">
+
+    <input type="text" id="create-artist-name" placeholder="Name of Artist">
+    <input type="number" min="0" max="100" id="create-artist-age" placeholder="Age of Artist">
+    <input type="text" id="create-artist-nationality" placeholder="Nationality of Artist">
+    <input type="text" id="create-artist-primaryStyle" placeholder="PrimaryStyle of Artist">
+
+    <select id="create-artist-gender">
+        <option>MALE</option>
+        <option>FEMALE</option>
+        <option>OTHER</option>
+    </select>
+
+    <button id="create-artist-button">Submit</button>
+
+</div>
+
+
+<nav>
+    <a href="../frontpage/home.html" >
+        <img id="logo" src="../art.webp" alt="logo">
+    </a>
+    <a href="../artists/artists.html">Artists</a>
+    <a href="../paintings/paintings.html">Paintings</a>
+    <a href="../galleries/galleries.html">Galleries</a>
+</nav>
+
+<h1>Welcome to artists</h1>
+
+<div id="artist-gallery"></div>
 <script src="artists.js"></script>
+
 
 </body>
 </html>
