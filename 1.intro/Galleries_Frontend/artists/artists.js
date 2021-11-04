@@ -2,63 +2,65 @@ fetch("http://localhost:8080/artists")
     .then(response => response.json())
     .then(result => {
         result.map(createArtistCard);
-
-
     });
+
+
+
+
 
 const artistGalleryWrapper = document.getElementById("artist-gallery")
 
 function createArtistCard(artist){
 
     console.log(artist);
-    const artistElement =document.createElement("div");
+    const artistElement = document.createElement("div");
 
 
     artistElement.innerHTML=`
-    <p>${escapeHTML(artist.name)}</p>
-    <p>${escapeHTML(artist.gender)}</p>
+    <p>${escapeHTML2(artist.name)}</p>
+    <p>${escapeHTML2(artist.gender)}</p>
     `;
 
     artistGalleryWrapper.appendChild(artistElement);
 
-
-
-
 }
 
-function createNewArtist(){
 
+
+
+
+function createNewArtist() {
     const name = document.getElementById("create-artist-name").value;
     const age = document.getElementById("create-artist-age").value;
-    const nationality = document.getElementById("create-artist-nationality").value;
-    const primaryStyle = document.getElementById("create-artist-primaryStyle").value;
-
+    const image = document.getElementById("create-artist-image").value;
+    const gender = document.getElementById("create-artist-gender").value;
 
     const newArtist = {
         name: name,
         age: Number(age),
-        nationality: nationality,
-        primaryStyle: primaryStyle
+        image: image,
+        gender: gender
     };
-    console.log(newArtist)
 
-    fetch("http://localhost:8080/artists", {
+
+    fetch("hhtp:/localhost:8080/artists", {
         method: "POST",
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         },
         body: JSON.stringify(newArtist)
     })
-        .then(response => response.json())
-        .then(result=> {
-            console.log(result)
-            createArtistCard(result)
+        .then(response => {
+            if (response.status === 200) {
+                createArtistCard(newArtist);
+            } else {
+                console.log("Artist not created.", response.status);
+            }
         })
-
-
-
+        .catch(error => console.log("Network related error", error));
 
 }
 
-document.getElementById("create-artist-button").addEventListener("click", createNewArtist)
+document.getElementById("create-artist-button")
+    .addEventListener("click", createNewArtist);
 

@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="../global.css">
     <script src="../lib/HTMLEscape.js"></script>
+    <!--<script src="../global.js"></script>--!>
 </head>
 <body>
 <nav>
@@ -16,7 +17,25 @@
     <a href="../galleries/galleries.html">Galleries</a>
 </nav>
 
-<script src="galleries.js"></script>
+<div id="galleries"></div>
+
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Location</td>
+        <td>Owner</td>
+        <td>Squarefeet</td>
+        <td>Delete</td>
+    </tr>
+    </thead>
+    <tbody id="galleries-tbody">
+
+    </tbody>
+</table>
+
+<script src="./galleries.js"></script>
+
 
 </body>
 </html>

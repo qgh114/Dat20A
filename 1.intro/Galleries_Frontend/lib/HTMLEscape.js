@@ -1,8 +1,10 @@
-function escapeHTML(string) {
-    string = string.replace(/&/g, "&amp;");
-    string = string.replace(/>/g, "&gt;");
-    string = string.replace(/</g, "&lt;");
-    string = string.replace(/"/g, "&quot;");
-    string = string.replace(/'/g, "&#039;");
-    return string;
+function escapeHTML2(string) {
+    if(!string) return "";
+
+    return string.replace(/&/g, "&amp;")
+    .replace(">", "&gt;")
+    .replace("<", "&lt;")
+    .replace(/"/g, "&quot;")
+    .replace("'", "&#039;");
+
 }
