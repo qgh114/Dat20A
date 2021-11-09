@@ -1,45 +1,55 @@
 const galleriesTableBody = document.getElementById("galleries-tbody");
 
-fetch("http://localhost:8080/galleries")
+fetch(baseURL + "/galleries")
     .then(response => response.json())
     .then(galleries => {
-        galleries.map(gallery => {
-            const galleryTableRow = document.createElement("tr");
-
-            galleryElement.innerHTML = `
-            <td>
-            <p>${escapeHTML(gallery.name)}</p>
-            </td>
-            
-           
-            <td>
-             <p>${escapeHTML(gallery.location)}</p>
-            </td>
-            
-            
-            <td>
-            <p>${escapeHTML(gallery.owner)}</p>
-            </td>
-            
-           
-            <td>
-            <p>${escapeHTML(gallery.squarefeet.toString())}</p>
-            </td>
-            
-            <td>
-            <button onclick="deleteGallery(${gallery.id})">❌</button>
-            </td>
-           
-        `;
-
-            galleriesTableBody.appendChild(galleryTableRow);
-        });
+        galleries.map(createGalleryTableRow);
     });
 
-function deleteGallery(galleryId){
-    console.log(galleryId)
+function createGalleryTableRow(gallery) {
+    const galleryTableRow = document.createElement("tr");
+
+    galleryTableRow.innerHTML = `
+            <td>
+                <a href="./gallery.html?galleryId=${gallery.id}">
+                    <p>${escapeHTML(gallery.name)}</p>
+                </a>
+            </td>
+            <td>
+                <p>${escapeHTML(gallery.location)}</p>
+            </td>
+            <td>
+                <p>${escapeHTML(gallery.owner)}</p>
+            </td>
+            <td>
+                <p>${escapeHTML(gallery.squareFeet.toString())}</p>
+            </td>           
+            <td>
+                <button onclick="deleteGallery(${gallery.id})">❌</button>            
+            </td>
+        `;
+
+    galleriesTableBody.appendChild(galleryTableRow);
 }
 
-const deleteButtons = document.getElementsByClassName("delete-gallery");
-deleteButtons.map(button => button.addEventListener("click", () => console.log("A button was clicked")));
+
+
+
+// todo actually delete a gallery
+function deleteGallery(galleryId){
+    fetch(baseURL + "/galleries/" + galleryId,{
+        method:"DELETE"
+    }).then(response => {
+        if (response.status == 200){
+            document.getElementById(galleryId).remove()
+            createTableRow(gallery)
+            console.log("Successful delete")
+
+        } else{
+            console.log(response.status)
+        }
+
+    });
+}
+
 

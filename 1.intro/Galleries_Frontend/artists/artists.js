@@ -1,4 +1,4 @@
-fetch("http://localhost:8080/artists")
+fetch(baseURL + "/artists")
     .then(response => response.json())
     .then(result => {
         result.map(createArtistCard);
