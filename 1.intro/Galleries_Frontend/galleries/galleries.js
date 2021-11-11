@@ -8,21 +8,29 @@ fetch(baseURL + "/galleries")
 
 function createGalleryTableRow(gallery) {
     const galleryTableRow = document.createElement("tr");
+    galleryTableRow.id = gallery.id;
+
+    constructGalleryTableRow()
+
+
 
     galleryTableRow.innerHTML = `
             <td>
                 <a href="./gallery.html?galleryId=${gallery.id}">
-                    <p>${escapeHTML(gallery.name)}</p>
+                    <p class="row-gallery-name">${escapeHTML(gallery.name)}</p>
                 </a>
             </td>
             <td>
-                <p>${escapeHTML(gallery.location)}</p>
+                <p class="row-gallery-location">${escapeHTML(gallery.location)}</p>
             </td>
             <td>
-                <p>${escapeHTML(gallery.owner)}</p>
+                <p class="row-gallery-owner">${escapeHTML(gallery.owner)}</p>
             </td>
             <td>
-                <p>${escapeHTML(gallery.squareFeet.toString())}</p>
+                <p class="row-gallery-square-feet">${escapeHTML(gallery.squareFeet.toString())}</p>
+            </td>
+            <td>
+                <button id="update-button-${gallery.id}">🥯</button>            
             </td>           
             <td>
                 <button onclick="deleteGallery(${gallery.id})">❌</button>            
@@ -30,26 +38,44 @@ function createGalleryTableRow(gallery) {
         `;
 
     galleriesTableBody.appendChild(galleryTableRow);
+
+    document.getElementById(`update-button-${gallery.id}`)
+        .addEventListener("click", () => updateGallery(gallery));
+}
+function constructGalleryTableRow(galleryTableRow, gallery){
+
+    tableRowToUpdate.innerHTML = `
+        <td>
+            <input value="${escapeHTML(gallery.name)}">
+        </td>
+        <td>
+            <input value="${escapeHTML(gallery.location)}">
+        </td>
+       <td>
+            <input value="${escapeHTML(gallery.owner)}">
+        </td>
+       <td>
+            <input value="${escapeHTML(gallery.squareFeet.toString())}">
+        </td>
+        <td>
+            <button id="cancel-update-${gallery.id}">✖️</button>
+            <button onclick="">✅</button>
+        </td>
+        <td>
+            <button onclick="deleteGallery(${gallery.id})">❌</button>
+        </td>
+    `;
+
 }
 
-
-
-
-// todo actually delete a gallery
-function deleteGallery(galleryId){
-    fetch(baseURL + "/galleries/" + galleryId,{
-        method:"DELETE"
+function deleteGallery(galleryId) {
+    fetch(baseURL + "/galleries/" + galleryId, {
+        method: "DELETE"
     }).then(response => {
-        if (response.status == 200){
-            document.getElementById(galleryId).remove()
-            createTableRow(gallery)
-            console.log("Successful delete")
-
-        } else{
-            console.log(response.status)
+        if (response.status === 200) {
+            document.getElementById(galleryId).remove();
+        } else {
+            console.log(response.status);
         }
-
     });
 }
-
-

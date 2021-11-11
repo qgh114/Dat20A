@@ -4,46 +4,28 @@ fetch(baseURL + "/artists")
         result.map(createArtistCard);
     });
 
+const artistsGalleryWrapper = document.getElementById("artists-gallery");
 
-
-
-
-const artistGalleryWrapper = document.getElementById("artist-gallery")
-
-function createArtistCard(artist){
-
-    console.log(artist);
+function createArtistCard(artist) {
     const artistElement = document.createElement("div");
+    artistElement.innerText = artist.name;
 
-
-    artistElement.innerHTML=`
-    <p>${escapeHTML2(artist.name)}</p>
-    <p>${escapeHTML2(artist.gender)}</p>
-    `;
-
-    artistGalleryWrapper.appendChild(artistElement);
-
+    artistsGalleryWrapper.appendChild(artistElement);
 }
-
-
-
-
 
 function createNewArtist() {
     const name = document.getElementById("create-artist-name").value;
     const age = document.getElementById("create-artist-age").value;
-    const image = document.getElementById("create-artist-image").value;
     const gender = document.getElementById("create-artist-gender").value;
 
     const newArtist = {
         name: name,
         age: Number(age),
-        image: image,
         gender: gender
     };
 
 
-    fetch("hhtp:/localhost:8080/artists", {
+    fetch(baseURL + "/artists", {
         method: "POST",
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -63,4 +45,3 @@ function createNewArtist() {
 
 document.getElementById("create-artist-button")
     .addEventListener("click", createNewArtist);
-

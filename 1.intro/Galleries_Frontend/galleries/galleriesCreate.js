@@ -1,5 +1,6 @@
 const galleryFormParentDiv = document.getElementById("create-gallery-form");
 const galleryFormExpandButton = document.getElementById("expand-gallery-form");
+
 const createGalleryForm = `<div>
 <h2>Create new gallery</h2>
 <label>Name</label>
